@@ -1,4 +1,5 @@
-Hi yo  
+# Hi yo  
+---
 번역 : 주인장  
 드디어 신세계에 도착한 걸 환영한다.  
 Hi this is the New World.  
