@@ -1,9 +1,10 @@
 # Goallo 
 Hi yo
-
+번역 : 주인장
 드디어 신세계에 도착한 걸 환영한다.
+Hi this is the New World.
 
-함께 가자 골로,
+함께 가자, 
 Goallo.
 
 1. OpenCV_practice.py : Practice makes perfect
