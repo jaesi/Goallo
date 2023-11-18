@@ -9,7 +9,8 @@ Hi this is the New World.
 나는 상상한다...   
 함께 가자,  
 Goallo.  
---- 
+
+----
 ### Contents
 > 
 1. OpenCV_practice.py : Practice makes perfect
