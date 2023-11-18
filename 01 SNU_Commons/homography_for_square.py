@@ -16,6 +16,7 @@ point_dst = [[308, 166],
 point_src = np.array(point_src)
 point_dst = np.array(point_dst)
 
+# fix sometihng
 # 호모그라피에서 변환된 행렬 찾기
 
 h, status = cv2.findHomography(point_src, point_dst)
