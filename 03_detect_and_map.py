@@ -171,6 +171,7 @@ plt.savefig('output_images/transformed_points_plot.jpg')
 plt.show()
 
 
+# 03_HEATMAP
 plt.figure(figsize=(6, 8))
 # hist2d
 plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=50, cmap='viridis')

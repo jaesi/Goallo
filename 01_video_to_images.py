@@ -53,7 +53,7 @@ def export_frames(video_path, output_folder, interval_sec=1):
     cap.release()
 
 if __name__ == "__main__":
-    video_path = "input_video/Seoul Plaza mist.mp4"  # Replace with your video file path
+    video_path = "input_video/GH013665.mp4"  # Replace with your video file path
     output_folder = "video_frames"  # Replace with your desired output folder
 
     export_frames(video_path, output_folder, interval_sec=1) # Set the frame rate that you want to extract
