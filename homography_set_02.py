@@ -2,10 +2,10 @@
 
 # THIS SCRIPT IS THE SECOND SCRIPT TO BE RUN IN THE 'pedestrian_mapping' SET.
 # FIRST YOU NEED TO RUN:
-# 1. '01_video_to_images.py'
+# 1. 'video_to_images_01.py'
 
 # AFTER THIS SCRIPT YOU CAN RUN:
-# 3. '03_detect_and_map.py'
+# 3. 'detect_and_map_03.py'
 
 
 # THIS SCRIPT CREATES A HOMOGRAPHY MATRIX TO TRANSFORM ONE IMAGE TO ANOTHER.
@@ -43,14 +43,17 @@ def select_point(event, x, y, flags, param):
             cv2.destroyAllWindows()
 
 # 2. READ IN SOURCE IMAGE (IMAGE FROM VIDEO USED TO TRACK PEDESTRIANS)
-img1 = cv2.imread('input_images/video_image.jpg')
+img1 = cv2.imread('input_images/video_image_3.jpg')
 img_src = img1
-img_src = cv2.resize(img1, (600, 800))
+w, h = img1.shape[:2]
+nw = int(w *2/3)
+nh = int(h *2/3)
+img_src = cv2.resize(img1, (nh,nw))
 
 # 3. READ IN DESTINATION IMAGE (TOP VIEW SATELLITE IMAGE YOU WANT TO CONVERT TO)
-img2 = cv2.imread('input_images/satellite_image.jpg')
+img2 = cv2.imread('input_images/satellite_image_3.jpg')
 img_dst = img2
-img_dst = cv2.resize(img2, (600,800))
+#img_dst = cv2.resize(img2, (600,800))
 
 # 이미지 1에서 꼭지점 선택
 points = []

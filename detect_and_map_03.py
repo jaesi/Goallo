@@ -2,8 +2,8 @@
 
 # THIS SCRIPT IS THE THIRD SCRIPT TO BE RUN IN THE 'pedestrian_mapping' SET.
 # TO RUN THIS SCRIPT YOU MUST FIRST RUN:
-# 1. '01_video_to_images.py'
-# 2. '02_homography_set.py'
+# 1. 'video_to_images_01.py'
+# 2. 'homography_set_02.py'
 
 # THE PURPOSE OF THIS SCRIPT IS TO EXTRACT THE COORDINATES OF DETECTED PEOPLE IN IMAGES, AND THEN PLOT THEIR TRANSFORMED
 # POINTS ON A SINGLE HEAT MAP. THUS MAPPING PEDESTRIAN MOVEMENT.
@@ -18,9 +18,6 @@
 # 7. PLOT ALL TRANSFORMED CENTRE POINTS ON HEATMAP
 
 
-## PREPARATION
-
-# STEP 0.1. LOAD REQUIRED PACKAGES
 import cv2
 from ultralytics import YOLO
 import pandas as pd
@@ -30,10 +27,7 @@ from pathlib import Path
 from tqdm import tqdm
 from PIL import Image
 import matplotlib.pyplot as plt
-
-from homography_set import get_homography_matrix
-
-# from homography_set import get_homography_matrix
+from homography_set_02 import get_homography_matrix
 
 # STEP 0.2. LOAD DESIRED YOLO MODEL (MEDIUM, LARGE, ETC.)
 model = YOLO("Yolo-Weights/yolov8l.pt")
@@ -163,9 +157,26 @@ plt.scatter(filtered_data['transformed_x'], filtered_data['transformed_y'], alph
 # plt.colorbar()  # Add colorbar
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-plt.xlim(-1000, 1000)
-plt.ylim(-10000, 10000)
+# plt.xlim(-1000, 1000)
+# plt.ylim(-10000, 10000)
 plt.title('Heatmap of Transformed Points')
 plt.grid(True)
 plt.savefig('output_images/transformed_points_plot.jpg')
+plt.show()
+
+
+# 03_HEATMAP
+plt.figure(figsize=(6, 8))
+# hist2d
+plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=50, cmap='viridis')
+
+plt.colorbar()
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+# plt.xlim(-1000, 1000)
+# plt.ylim(-10000, 10000)
+plt.title('Heatmap of Transformed Points')
+plt.grid(True)
+
+plt.savefig('output_images/transformed_points_heatmap.jpg')
 plt.show()
