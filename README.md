@@ -1,18 +1,18 @@
-# Hi yo  
+# Homography 
+## (Justin is coming!)
 
-번역 : 주인장  
-드디어 신세계에 도착한 걸 환영한다.  
-Hi this is the New World.  
+Hi this for the **Homography** transition used after process of YOLO Detection of pedestrain
 
-"잘 들어라 누구나 처음 시작은 어렵다,   
-그러나 우리는 성장한다...   
-나는 상상한다...   
-함께 가자,  
-Goallo."  
 
 ----
 ### Contents
-> 
-1. video_to_images_01
-2. homography_set_02
-3. detect_and_map_03
+ 
+> 1. video_to_images_01 
+> : Turns Video file into Framerate images
+> 2. homography_set_02 : creating a Homography Matrix by placing dots from the reference image
+> 3. detect_and_map_03 : Applying homography to video frame images and turning it to heatmap plot
+
+
+<img src="input_images/satellite_image.jpg" width="450px" height="300px" alt="Satellite"></img><br/>
+<img src="output_images/center_point_plot.jpg" width="450px" height="450px" alt="Satellite"></img><br/>
+<img src="output_images/transformed_points_heatmap.jpg" width="450px" height="450px" alt="Satellite"></img><br/>
