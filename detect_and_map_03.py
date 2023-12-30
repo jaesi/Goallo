@@ -147,7 +147,7 @@ plt.scatter(filtered_data['x_center'], filtered_data['ymin'], alpha=0.6, cmap='v
 # plt.colorbar()  # Add colorbar
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-plt.title('Heatmap of Center Points (untransformed)')
+plt.title('Scatter-plot of Center Points (untransformed)')
 plt.grid(True)
 plt.savefig('output_images/center_point_plot.jpg')
 plt.show()
@@ -160,7 +160,7 @@ plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
 # plt.xlim(-1000, 1000)
 # plt.ylim(-10000, 10000)
-plt.title('Heatmap of Transformed Points')
+plt.title('Scatter-plot of Transformed Points')
 plt.grid(True)
 plt.savefig('output_images/transformed_points_plot.jpg')
 plt.show()
@@ -169,7 +169,7 @@ plt.show()
 # 03_HEATMAP
 plt.figure(figsize=(6, 8))
 # hist2d
-plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=50, cmap='viridis')
+plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=(20,35), cmap='Reds')
 
 plt.colorbar()
 plt.xlabel('X-axis')
