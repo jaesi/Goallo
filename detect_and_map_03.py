@@ -1,22 +1,22 @@
-## CODE DESCRIPTION ##
+'''
+< CODE DESCRIPTION >
 
-# THIS SCRIPT IS THE THIRD SCRIPT TO BE RUN IN THE 'pedestrian_mapping' SET.
-# TO RUN THIS SCRIPT YOU MUST FIRST RUN:
-# 1. 'video_to_images_01.py'
-# 2. 'homography_set_02.py'
+TO RUN THIS SCRIPT YOU MUST FIRST RUN:
+1. 'video_to_images_01.py'
+2. 'homography_set_02.py'
 
-# THE PURPOSE OF THIS SCRIPT IS TO EXTRACT THE COORDINATES OF DETECTED PEOPLE IN IMAGES, AND THEN PLOT THEIR TRANSFORMED
-# POINTS ON A SINGLE HEAT MAP. THUS MAPPING PEDESTRIAN MOVEMENT.
+THE PURPOSE OF THIS SCRIPT IS TO EXTRACT THE COORDINATES OF DETECTED PEOPLE IN IMAGES, AND THEN PLOT THEIR TRANSFORMED
+POINTS ON A SINGLE HEAT MAP. THUS MAPPING PEDESTRIAN MOVEMENT.
 
-## STEPS
-# 1. READ IN IMAGE
-# 2. PERFORM OBJECT DETECTION
-# 3. SAVE BOUNDING BOX COORD RESULTS TO A DATAFRAME
-# 4. RUN FUNCTION OVER ALL IMAGES IN FOLDER, WHILST APPENDING DATAFRAME WITH EVERY BOUNDING BOC COORD
-# 5. CREATE NEW VARIABLE IN DATAFRAME THAT CALCULATES CENTRE POINTS FROM COORDS
-# 6. CREATE NEW VARIABLE IN DATAFRAME THAT CALCULATES HOMOGRAPHY TRANSFORMATION OF CENTRE POINTS
-# 7. PLOT ALL TRANSFORMED CENTRE POINTS ON HEATMAP
-
+# STEPS
+1. READ IN IMAGE
+2. PERFORM OBJECT DETECTION
+3. SAVE BOUNDING BOX COORD RESULTS TO A DATAFRAME
+4. RUN FUNCTION OVER ALL IMAGES IN FOLDER, WHILST APPENDING DATAFRAME WITH EVERY BOUNDING BOC COORD
+5. CREATE NEW VARIABLE IN DATAFRAME THAT CALCULATES CENTRE POINTS FROM COORDS
+6. CREATE NEW VARIABLE IN DATAFRAME THAT CALCULATES HOMOGRAPHY TRANSFORMATION OF CENTRE POINTS
+7. PLOT ALL TRANSFORMED CENTRE POINTS ON HEATMAP
+'''
 
 import cv2
 from ultralytics import YOLO
@@ -67,16 +67,16 @@ for image_path in tqdm(images_folder.glob("*.png")):  # Iterate through each ima
         data.append({
             'Image': image_path_str,
             'xmin': bbox[0],
-            'ymin': bbox[1],
+            'ymax': bbox[1], # I've changed
             'xmax': bbox[2],
-            'ymax': bbox[3],
-            'Class': label  # Add the 'Class' column with detection class labels
+            'ymin': bbox[3], # this two variables
+            'Class': label
         })
 
 # Create a DataFrame from the list of dictionaries
 data = pd.DataFrame(data)
 
-# Function to extract integer value from tensor
+# Function to extract integer value from tensor : 왜 필요한지 체크해보기
 def extract_integer(tensor_value):
     return int(tensor_value.item()) if isinstance(tensor_value, torch.Tensor) else int(tensor_value)
 
@@ -108,6 +108,7 @@ h = get_homography_matrix()
 ones_column = np.ones((len(center_points), 1))
 homogeneous_points = np.hstack((center_points, ones_column))
 transformed_points = np.dot(homogeneous_points, h.T)
+
 # Normalize the transformed points by dividing by the third coordinate (homogeneous coordinate)
 normalized_transformed_points = transformed_points[:, :-1] / transformed_points[:, [-1]]
 
