@@ -28,6 +28,8 @@ from tqdm import tqdm
 from PIL import Image
 import matplotlib.pyplot as plt
 from homography_set_02 import get_homography_matrix
+import matplotlib.image as mpimg
+import seaborn as sns
 
 # STEP 0.2. LOAD DESIRED YOLO MODEL (MEDIUM, LARGE, ETC.)
 model = YOLO("Yolo-Weights/yolov8l.pt")
@@ -141,9 +143,9 @@ print(filtered_data)
 # SAVE DATAFRAME TO .csv
 filtered_data.to_csv('detections_data/detections_data.csv', index=False)
 
-# MAP UN-TRANSFORMED POINTS ON HEATMAP
+# MAP UN-TRANSFORMED POINTS ON Scatter-Plot
 plt.figure(figsize=(6, 8))
-plt.scatter(filtered_data['x_center'], filtered_data['ymin'], alpha=0.6, cmap='viridis')
+plt.scatter(filtered_data['x_center'], filtered_data['ymin'], alpha=0.6, color='green')
 # plt.colorbar()  # Add colorbar
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
@@ -152,32 +154,51 @@ plt.grid(True)
 plt.savefig('output_images/center_point_plot.jpg')
 plt.show()
 
-# MAP TRANSFORMED POINTS ON HEATMAP
+
+
+# Set the aesthetic style of the plots
+sns.set_style('whitegrid')
+
+# Create the scatter plot with KDE
 plt.figure(figsize=(6, 8))
-plt.scatter(filtered_data['transformed_x'], filtered_data['transformed_y'], alpha=0.6, cmap='viridis')
-# plt.colorbar()  # Add colorbar
+sns.scatterplot(x='transformed_x', y='transformed_y', data=filtered_data, alpha=0.6, color='green')
+sns.regplot(x='transformed_x', y='transformed_y', data=filtered_data,
+            scatter_kws={'alpha':0.6, 'color':'green'}, line_kws={'color':'blue'})
+
+# Customize the axes and title
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-# plt.xlim(-1000, 1000)
-# plt.ylim(-10000, 10000)
-plt.title('Scatter-plot of Transformed Points')
-plt.grid(True)
-plt.savefig('output_images/transformed_points_plot.jpg')
+plt.title('Scatter Plot with KDE of Transformed Points')
+
+# Save the figure
+plt.savefig('output_images/transformed_points_kde_scatter.jpg')
+
+# Show the plot
 plt.show()
 
 
 # 03_HEATMAP
-plt.figure(figsize=(6, 8))
-# hist2d
-plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=(20,35), cmap='Reds')
 
+# 이미지 로드
+# bg_image = mpimg.imread('input_images/satellite_image.jpg') # 배경 이미지 파일 경로
+
+# 플롯 생성
+plt.figure(figsize=(6, 8))
+
+# 이미지 표시
+# plt.imshow(bg_image) # 이미지 좌표계 설정
+
+# 2D 히스토그램 플롯
+plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=(20,35), cmap='Reds',
+           vmin=0, vmax=30)
+
+# 기타 설정
 plt.colorbar()
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-# plt.xlim(-1000, 1000)
-# plt.ylim(-10000, 10000)
 plt.title('Heatmap of Transformed Points')
 plt.grid(True)
 
+# 이미지 저장 및 표시
 plt.savefig('output_images/transformed_points_heatmap.jpg')
 plt.show()
