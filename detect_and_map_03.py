@@ -141,7 +141,7 @@ print(filtered_data)
 # SAVE DATAFRAME TO .csv
 filtered_data.to_csv('detections_data/detections_data.csv', index=False)
 
-# MAP UN-TRANSFORMED POINTS ON HEATMAP
+# MAP UN-TRANSFORMED POINTS ON Scatter-plot
 plt.figure(figsize=(6, 8))
 plt.scatter(filtered_data['x_center'], filtered_data['ymin'], alpha=0.6, cmap='viridis')
 # plt.colorbar()  # Add colorbar
@@ -152,7 +152,7 @@ plt.grid(True)
 plt.savefig('output_images/center_point_plot.jpg')
 plt.show()
 
-# MAP TRANSFORMED POINTS ON HEATMAP
+# MAP TRANSFORMED POINTS ON Scatter-plot
 plt.figure(figsize=(6, 8))
 plt.scatter(filtered_data['transformed_x'], filtered_data['transformed_y'], alpha=0.6, cmap='viridis')
 # plt.colorbar()  # Add colorbar
