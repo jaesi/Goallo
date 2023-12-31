@@ -174,8 +174,6 @@ plt.hist2d(filtered_data['transformed_x'], filtered_data['transformed_y'], bins=
 plt.colorbar()
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-# plt.xlim(-1000, 1000)
-# plt.ylim(-10000, 10000)
 plt.title('Heatmap of Transformed Points')
 plt.grid(True)
 
