@@ -156,14 +156,14 @@ plt.show()
 
 
 
-# Set the aesthetic style of the plots
+# MAP TRANSFORMED POINTS ON Scatter-Plot
 sns.set_style('whitegrid')
 
 # Create the scatter plot with KDE
 plt.figure(figsize=(6, 8))
 sns.scatterplot(x='transformed_x', y='transformed_y', data=filtered_data, alpha=0.6, color='green')
 # sns.regplot(x='transformed_x', y='transformed_y', data=filtered_data,
-            scatter_kws={'alpha':0.6, 'color':'green'}, line_kws={'color':'blue'})
+#             scatter_kws={'alpha':0.6, 'color':'green'}, line_kws={'color':'blue'})
 
 # Customize the axes and title
 plt.xlabel('X-axis')
