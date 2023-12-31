@@ -162,16 +162,16 @@ sns.set_style('whitegrid')
 # Create the scatter plot with KDE
 plt.figure(figsize=(6, 8))
 sns.scatterplot(x='transformed_x', y='transformed_y', data=filtered_data, alpha=0.6, color='green')
-sns.regplot(x='transformed_x', y='transformed_y', data=filtered_data,
+# sns.regplot(x='transformed_x', y='transformed_y', data=filtered_data,
             scatter_kws={'alpha':0.6, 'color':'green'}, line_kws={'color':'blue'})
 
 # Customize the axes and title
 plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
-plt.title('Scatter Plot with KDE of Transformed Points')
+plt.title('Scatter Plot with Transformed Points')
 
 # Save the figure
-plt.savefig('output_images/transformed_points_kde_scatter.jpg')
+plt.savefig('output_images/transformed_points_scatter.jpg')
 
 # Show the plot
 plt.show()
